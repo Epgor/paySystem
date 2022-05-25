@@ -278,7 +278,7 @@ class Ui_Wypata(object):
         printer.konfiguracja(self.listWidget.currentItem().text(),\
             self.listWidget_2.currentItem().text(), self.spinBox_3.value(), \
             self.spinBox_5.value(), self.spinBox.value(), \
-            self.spinBox_4.value(), self.karma)
+            self.spinBox_4.value(), self.karma, self.spinBox_2.value())
         if (self.text != ""):
             printer.wynik(self.text)
         printer.printPdf()

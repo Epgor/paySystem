@@ -27,10 +27,11 @@ class PayPdfGenerator:
         self.dodatkoweKoszty = "500"
         self.uwagi = "-34"
         self.wynikDziałania = ""
+        self.platnoscDiety = ""
         
         
     def konfiguracja(self, stanowisko, wymiarPracy, lataPracy, nadgodziny,\
-         delegacjaGodz, dodatkoweKoszty, uwagi):
+         delegacjaGodz, dodatkoweKoszty, uwagi, diety):
         self.stanowisko = str(stanowisko)
         self.wymiarPracy = str(wymiarPracy)
         self.lataPracy = str(lataPracy)
@@ -38,6 +39,7 @@ class PayPdfGenerator:
         self.delegacjaGodz = str(delegacjaGodz)
         self.dodatkoweKoszty = str(dodatkoweKoszty)
         self.uwagi = str(uwagi)
+        self.platnoscDiety = str(diety)
 
     def wynik(self, text):
         self.wynikDziałania = text
@@ -73,20 +75,22 @@ class PayPdfGenerator:
 
         self.canvas.drawString(90,520,"Liczba godzin w delegacji: ")
         self.canvas.drawString(400, 520, self.delegacjaGodz)
-        self.canvas.drawString(90,490,"Dodatkowe koszty poniesione przez pracownika: ")
-        self.canvas.drawString(400, 490, self.dodatkoweKoszty)
-        self.canvas.line(50,480,550,480)
+        self.canvas.drawString(90,490,"Płatność diety: ")
+        self.canvas.drawString(400, 490, self.platnoscDiety+"%")
+        self.canvas.drawString(90,460,"Dodatkowe koszty poniesione przez pracownika: ")
+        self.canvas.drawString(400, 460, self.dodatkoweKoszty)
+        self.canvas.line(50,450,550,450)
 
-        self.canvas.drawString(90,460,"Potrącenia i dodatki: ")
-        self.canvas.drawString(90,430,"Bilans pochwał/uwag: ")
-        self.canvas.drawString(400,430, self.uwagi)
-        self.canvas.line(50,420,550,420)
-        self.canvas.line(50,415,550,415)
+        self.canvas.drawString(90,430,"Potrącenia i dodatki: ")
+        self.canvas.drawString(90,400,"Bilans pochwał/uwag: ")
+        self.canvas.drawString(400,400, self.uwagi)
+        self.canvas.line(50,390,550,390)
+        self.canvas.line(50,385,550,385)
 
         #################################
         if (self.wynikDziałania != ""):
             lista = self.wynikDziałania.split('\n')
-            wysokosc = 380
+            wysokosc = 360
             for linia in lista[11:]:
                 if linia.endswith(".0"):
                     linia = linia [:-2]
